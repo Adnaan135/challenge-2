@@ -1,0 +1,21 @@
+class SearchSuggestionSystem {
+  constructor(products) {
+    // Sort the product list lexicographically
+    this.products = products.sort();
+  }
+
+  getSuggestions(searchWord) {
+    const suggestions = [];
+    let prefix = "";
+
+    for (let char of searchWord) {
+      prefix += char;
+      // Filter products starting with the current prefix
+      const matches = this.products.filter(product => product.startsWith(prefix));
+      // Push up to the first 3 matches
+      suggestions.push(matches.slice(0, 3));
+    }
+
+    return suggestions;
+  }
+}
